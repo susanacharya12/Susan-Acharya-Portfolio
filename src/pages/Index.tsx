@@ -111,7 +111,7 @@ export default function Index() {
             <div className="mb-8 animate-fade-in [animation-delay:200ms]">
               <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-105">
                 <img 
-                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+                  src="/lovable-uploads/5058cdc6-c2f4-4cb1-b8cc-303bca9df609.png"
                   alt="Susan Acharya" 
                   className="w-full h-full object-cover"
                 />
