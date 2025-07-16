@@ -6,6 +6,381 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation, useStaggerAnimation } from "@/hooks/useScrollAnimation";
+
+// About Section Component with scroll animations
+const AboutSection = () => {
+  const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
+  const [textRef, textVisible] = useScrollAnimation({ threshold: 0.5 });
+
+  return (
+    <>
+      <h2 
+        ref={titleRef as any}
+        className={`text-4xl font-bold mb-8 transition-all duration-1000 ${
+          titleVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        About Me
+      </h2>
+      <div 
+        className={`w-20 h-1 bg-primary mx-auto mb-8 transition-all duration-1000 delay-300 ${
+          titleVisible ? 'animate-scale-in opacity-100' : 'opacity-0 scale-x-0'
+        }`}
+      />
+      <p 
+        ref={textRef as any}
+        className={`text-lg leading-relaxed text-muted-foreground transition-all duration-1000 ${
+          textVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        Motivated junior Python and web developer with hands-on experience building scalable, 
+        user-friendly web applications using Django and Python. Skilled in RESTful API design, 
+        modern web technologies, and responsive design. Strong problem solver and team player. 
+        Currently pursuing an undergraduate degree in BSc. CSIT. Seeking opportunities to 
+        contribute and grow as a developer.
+      </p>
+    </>
+  );
+};
+
+// Projects Section Component with stagger animations
+const ProjectsSection = ({ projects }: { projects: any[] }) => {
+  const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
+  const [containerRef, visibleItems] = useStaggerAnimation(projects.length, 150);
+
+  return (
+    <>
+      <h2 
+        ref={titleRef as any}
+        className={`text-4xl font-bold text-center mb-12 transition-all duration-1000 ${
+          titleVisible ? 'animate-fade-in-down opacity-100' : 'opacity-0 -translate-y-8'
+        }`}
+      >
+        Featured Projects
+      </h2>
+      <div ref={containerRef as any} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {projects.map((project, index) => (
+          <Card 
+            key={index} 
+            className={`group hover:shadow-2xl transition-all duration-500 cursor-pointer transform ${
+              visibleItems[index] 
+                ? 'animate-scale-in opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            } hover:-translate-y-2 hover:scale-105`}
+          >
+            <CardHeader>
+              <div className="flex items-center space-x-3 mb-2">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:rotate-6">
+                  {project.icon}
+                </div>
+                <CardTitle className="group-hover:text-primary transition-colors duration-300">
+                  {project.title}
+                </CardTitle>
+              </div>
+              <CardDescription className="group-hover:text-foreground/80 transition-colors">
+                {project.description}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech: string, techIndex: number) => (
+                  <Badge 
+                    key={tech} 
+                    variant="secondary" 
+                    className={`hover:bg-primary hover:text-primary-foreground transition-all duration-300 ${
+                      visibleItems[index] ? 'animate-fade-in' : 'opacity-0'
+                    }`}
+                    style={{ animationDelay: `${techIndex * 100}ms` }}
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </>
+  );
+};
+
+// Skills Section Component with category animations
+const SkillsSection = ({ skills }: { skills: any }) => {
+  const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
+  const skillCategories = Object.entries(skills);
+  const [containerRef, visibleItems] = useStaggerAnimation(skillCategories.length, 200);
+
+  return (
+    <>
+      <h2 
+        ref={titleRef as any}
+        className={`text-4xl font-bold text-center mb-12 transition-all duration-1000 ${
+          titleVisible ? 'animate-fade-in-down opacity-100' : 'opacity-0 -translate-y-8'
+        }`}
+      >
+        Skills & Technologies
+      </h2>
+      <div ref={containerRef as any} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {skillCategories.map(([category, skillList], index) => (
+          <Card 
+            key={category} 
+            className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+              visibleItems[index] 
+                ? 'animate-fade-in-up opacity-100' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Code className="h-5 w-5 text-primary animate-bounce-gentle" />
+                <span>{category}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                {(skillList as string[]).map((skill, skillIndex) => (
+                  <Badge 
+                    key={skill} 
+                    variant="outline" 
+                    className={`hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 ${
+                      visibleItems[index] ? 'animate-fade-in' : 'opacity-0'
+                    }`}
+                    style={{ animationDelay: `${skillIndex * 100}ms` }}
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </>
+  );
+};
+
+// Education Section Component
+const EducationSection = () => {
+  const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
+  const [containerRef, visibleItems] = useStaggerAnimation(2, 300);
+
+  return (
+    <>
+      <h2 
+        ref={titleRef as any}
+        className={`text-4xl font-bold text-center mb-12 transition-all duration-1000 ${
+          titleVisible ? 'animate-fade-in-down opacity-100' : 'opacity-0 -translate-y-8'
+        }`}
+      >
+        Education & Certificates
+      </h2>
+      
+      <div ref={containerRef as any} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Education */}
+        <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+          visibleItems[0] ? 'animate-fade-in-left opacity-100' : 'opacity-0 -translate-x-8'
+        }`}>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <GraduationCap className="h-5 w-5 text-primary animate-bounce-gentle" />
+              <span>Education</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="border-l-2 border-primary pl-4 hover:border-l-4 transition-all duration-300">
+                <h3 className="font-semibold">BSc. Computer Science and Information Technology</h3>
+                <p className="text-muted-foreground">Bhaktapur Multiple Campus, Tribhuvan University</p>
+                <p className="text-sm text-muted-foreground">Currently Pursuing</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Certificates */}
+        <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+          visibleItems[1] ? 'animate-fade-in-right opacity-100' : 'opacity-0 translate-x-8'
+        }`}>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Award className="h-5 w-5 text-primary animate-rotate-slow" />
+              <span>Certificates</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
+                <span>Python Bootcamp</span>
+              </div>
+              <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
+                <span>Django Web Framework</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
+  );
+};
+
+// Languages & Achievements Section Component
+const LanguagesAchievementsSection = () => {
+  const [containerRef, visibleItems] = useStaggerAnimation(2, 300);
+
+  return (
+    <div ref={containerRef as any} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Languages */}
+      <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+        visibleItems[0] ? 'animate-fade-in-left opacity-100' : 'opacity-0 -translate-x-8'
+      }`}>
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Globe className="h-5 w-5 text-primary animate-float" />
+            <span>Languages</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center hover:scale-105 transition-transform duration-300">
+              <span>English</span>
+              <Badge className="animate-scale-in">Fluent</Badge>
+            </div>
+            <div className="flex justify-between items-center hover:scale-105 transition-transform duration-300">
+              <span>Nepali</span>
+              <Badge className="animate-scale-in [animation-delay:100ms]">Native</Badge>
+            </div>
+            <div className="flex justify-between items-center hover:scale-105 transition-transform duration-300">
+              <span>Hindi</span>
+              <Badge variant="secondary" className="animate-scale-in [animation-delay:200ms]">Intermediate</Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Achievements */}
+      <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+        visibleItems[1] ? 'animate-fade-in-right opacity-100' : 'opacity-0 translate-x-8'
+      }`}>
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            <Trophy className="h-5 w-5 text-primary animate-wiggle" />
+            <span>Achievements</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            <div className="flex items-start space-x-2 hover:scale-105 transition-transform duration-300">
+              <Star className="h-4 w-4 text-primary mt-0.5 animate-pulse-slow" />
+              <span className="text-sm">Successfully built and deployed multiple web applications using Django</span>
+            </div>
+            <div className="flex items-start space-x-2 hover:scale-105 transition-transform duration-300">
+              <Star className="h-4 w-4 text-primary mt-0.5 animate-pulse-slow [animation-delay:200ms]" />
+              <span className="text-sm">Contributed to open-source projects on GitHub</span>
+            </div>
+            <div className="flex items-start space-x-2 hover:scale-105 transition-transform duration-300">
+              <Star className="h-4 w-4 text-primary mt-0.5 animate-pulse-slow [animation-delay:400ms]" />
+              <span className="text-sm">Completed Python and Django certification programs</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+// Contact Section Component
+const ContactSection = ({ handleContactSubmit }: { handleContactSubmit: (e: React.FormEvent) => void }) => {
+  const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
+  const [containerRef, visibleItems] = useStaggerAnimation(2, 300);
+
+  return (
+    <>
+      <h2 
+        ref={titleRef as any}
+        className={`text-4xl font-bold text-center mb-12 transition-all duration-1000 ${
+          titleVisible ? 'animate-fade-in-down opacity-100' : 'opacity-0 -translate-y-8'
+        }`}
+      >
+        Get In Touch
+      </h2>
+      
+      <div ref={containerRef as any} className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        {/* Contact Info */}
+        <div className={`transition-all duration-700 ${
+          visibleItems[0] ? 'animate-fade-in-left opacity-100' : 'opacity-0 -translate-x-8'
+        }`}>
+          <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
+          <p className="text-muted-foreground mb-8">
+            I'm always interested in new opportunities and collaborations. 
+            Feel free to reach out if you'd like to discuss a project or just say hello!
+          </p>
+          
+          <div className="space-y-4">
+            <div className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
+              <Mail className="h-5 w-5 text-primary animate-bounce-gentle" />
+              <span>susanacharya.sp@gmail.com</span>
+            </div>
+            <div className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
+              <Phone className="h-5 w-5 text-primary animate-bounce-gentle [animation-delay:200ms]" />
+              <span>+977 9824562967</span>
+            </div>
+            <div className="flex items-center space-x-3 hover:scale-105 transition-transform duration-300">
+              <MapPin className="h-5 w-5 text-primary animate-bounce-gentle [animation-delay:400ms]" />
+              <span>Nepal</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Form */}
+        <Card className={`transition-all duration-700 hover:shadow-xl ${
+          visibleItems[1] ? 'animate-fade-in-right opacity-100' : 'opacity-0 translate-x-8'
+        }`}>
+          <CardHeader>
+            <CardTitle>Send Message</CardTitle>
+            <CardDescription>I'll get back to you as soon as possible</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleContactSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input 
+                  placeholder="Your Name" 
+                  required 
+                  className="hover:border-primary/50 focus:border-primary transition-colors"
+                />
+                <Input 
+                  type="email" 
+                  placeholder="Your Email" 
+                  required 
+                  className="hover:border-primary/50 focus:border-primary transition-colors"
+                />
+              </div>
+              <Input 
+                placeholder="Subject" 
+                required 
+                className="hover:border-primary/50 focus:border-primary transition-colors"
+              />
+              <Textarea 
+                placeholder="Your Message" 
+                rows={5} 
+                required 
+                className="hover:border-primary/50 focus:border-primary transition-colors"
+              />
+              <Button 
+                type="submit" 
+                className="w-full hover:scale-105 transition-transform duration-300 animate-button-glow"
+              >
+                Send Message
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    </>
+  );
+};
 
 export default function Index() {
   const [isVisible, setIsVisible] = useState(false);
@@ -108,12 +483,12 @@ export default function Index() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {/* Photo */}
-            <div className="mb-8 animate-fade-in [animation-delay:200ms]">
-              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-300 hover:scale-105">
+            <div className="mb-8 animate-scale-in-center [animation-delay:200ms]">
+              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-500 hover:scale-110 hover:shadow-3xl animate-float">
                 <img 
                   src="/lovable-uploads/5058cdc6-c2f4-4cb1-b8cc-303bca9df609.png"
                   alt="Susan Acharya" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -174,15 +549,7 @@ export default function Index() {
       <section id="about" className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 animate-fade-in">About Me</h2>
-            <div className="w-20 h-1 bg-primary mx-auto mb-8 animate-fade-in [animation-delay:200ms]" />
-            <p className="text-lg leading-relaxed text-muted-foreground animate-fade-in [animation-delay:400ms]">
-              Motivated junior Python and web developer with hands-on experience building scalable, 
-              user-friendly web applications using Django and Python. Skilled in RESTful API design, 
-              modern web technologies, and responsive design. Strong problem solver and team player. 
-              Currently pursuing an undergraduate degree in BSc. CSIT. Seeking opportunities to 
-              contribute and grow as a developer.
-            </p>
+            <AboutSection />
           </div>
         </div>
       </section>
@@ -190,228 +557,35 @@ export default function Index() {
       {/* Projects Section */}
       <section id="projects" className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 animate-fade-in">Featured Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <CardHeader>
-                  <div className="flex items-center space-x-3 mb-2">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      {project.icon}
-                    </div>
-                    <CardTitle className="group-hover:text-primary transition-colors">
-                      {project.title}
-                    </CardTitle>
-                  </div>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <ProjectsSection projects={projects} />
         </div>
       </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 animate-fade-in">Skills & Technologies</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(skills).map(([category, skillList], index) => (
-              <Card key={category} className="animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Code className="h-5 w-5 text-primary" />
-                    <span>{category}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {skillList.map((skill) => (
-                      <Badge key={skill} variant="outline" className="hover:bg-primary hover:text-primary-foreground transition-colors">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <SkillsSection skills={skills} />
         </div>
       </section>
 
       {/* Education & Certificates */}
       <section id="education" className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 animate-fade-in">Education & Certificates</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Education */}
-            <Card className="animate-fade-in [animation-delay:200ms]">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <GraduationCap className="h-5 w-5 text-primary" />
-                  <span>Education</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="border-l-2 border-primary pl-4">
-                    <h3 className="font-semibold">BSc. Computer Science and Information Technology</h3>
-                    <p className="text-muted-foreground">Bhaktapur Multiple Campus, Tribhuvan University</p>
-                    <p className="text-sm text-muted-foreground">Currently Pursuing</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Certificates */}
-            <Card className="animate-fade-in [animation-delay:400ms]">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Award className="h-5 w-5 text-primary" />
-                  <span>Certificates</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-2">
-                    <Star className="h-4 w-4 text-primary" />
-                    <span>Python Bootcamp</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Star className="h-4 w-4 text-primary" />
-                    <span>Django Web Framework</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <EducationSection />
         </div>
       </section>
 
       {/* Languages & Achievements */}
       <section className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Languages */}
-            <Card className="animate-fade-in">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Globe className="h-5 w-5 text-primary" />
-                  <span>Languages</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span>English</span>
-                    <Badge>Fluent</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Nepali</span>
-                    <Badge>Native</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Hindi</span>
-                    <Badge variant="secondary">Intermediate</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Achievements */}
-            <Card className="animate-fade-in [animation-delay:200ms]">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Trophy className="h-5 w-5 text-primary" />
-                  <span>Achievements</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-2">
-                    <Star className="h-4 w-4 text-primary mt-0.5" />
-                    <span className="text-sm">Successfully built and deployed multiple web applications using Django</span>
-                  </div>
-                  <div className="flex items-start space-x-2">
-                    <Star className="h-4 w-4 text-primary mt-0.5" />
-                    <span className="text-sm">Contributed to open-source projects on GitHub</span>
-                  </div>
-                  <div className="flex items-start space-x-2">
-                    <Star className="h-4 w-4 text-primary mt-0.5" />
-                    <span className="text-sm">Completed Python and Django certification programs</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <LanguagesAchievementsSection />
         </div>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 animate-fade-in">Get In Touch</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Contact Info */}
-            <div className="animate-fade-in [animation-delay:200ms]">
-              <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
-              <p className="text-muted-foreground mb-8">
-                I'm always interested in new opportunities and collaborations. 
-                Feel free to reach out if you'd like to discuss a project or just say hello!
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-primary" />
-                  <span>susanacharya.sp@gmail.com</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <span>+977 9824562967</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <span>Nepal</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <Card className="animate-fade-in [animation-delay:400ms]">
-              <CardHeader>
-                <CardTitle>Send Message</CardTitle>
-                <CardDescription>I'll get back to you as soon as possible</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input placeholder="Your Name" required />
-                    <Input type="email" placeholder="Your Email" required />
-                  </div>
-                  <Input placeholder="Subject" required />
-                  <Textarea placeholder="Your Message" rows={5} required />
-                  <Button type="submit" className="w-full">
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
+          <ContactSection handleContactSubmit={handleContactSubmit} />
         </div>
       </section>
 
