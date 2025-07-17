@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Download, ExternalLink, Code, Database, Globe, Award, Star, Trophy, BookOpen, GraduationCap } from "lucide-react";
+import ecommerceProject from "@/assets/ecommerce-project.jpg";
+import studentManagement from "@/assets/student-management.jpg";
+import egovernancePortal from "@/assets/egovernance-portal.jpg";
+import pythonProject from "@/assets/python-project.jpg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -63,12 +67,21 @@ const ProjectsSection = ({ projects }: { projects: any[] }) => {
         {projects.map((project, index) => (
           <Card 
             key={index} 
-            className={`group hover:shadow-2xl transition-all duration-500 cursor-pointer transform ${
+            className={`group hover:shadow-2xl transition-all duration-500 transform ${
               visibleItems[index] 
                 ? 'animate-scale-in opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-8'
             } hover:-translate-y-2 hover:scale-105`}
           >
+            {project.image && (
+              <div className="overflow-hidden rounded-t-lg">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+            )}
             <CardHeader>
               <div className="flex items-center space-x-3 mb-2">
                 <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:rotate-6">
@@ -83,7 +96,7 @@ const ProjectsSection = ({ projects }: { projects: any[] }) => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.map((tech: string, techIndex: number) => (
                   <Badge 
                     key={tech} 
@@ -96,6 +109,26 @@ const ProjectsSection = ({ projects }: { projects: any[] }) => {
                     {tech}
                   </Badge>
                 ))}
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => window.open(project.github, '_blank')}
+                >
+                  <Github className="h-4 w-4 mr-2" />
+                  GitHub
+                </Button>
+                <Button
+                  size="sm"
+                  className="flex-1"
+                  disabled={project.demo === "Coming Soon"}
+                  onClick={() => project.demo !== "Coming Soon" && window.open(project.demo, '_blank')}
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  {project.demo === "Coming Soon" ? "Coming Soon" : "Demo"}
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -192,7 +225,20 @@ const EducationSection = () => {
               <div className="border-l-2 border-primary pl-4 hover:border-l-4 transition-all duration-300">
                 <h3 className="font-semibold">BSc. Computer Science and Information Technology</h3>
                 <p className="text-muted-foreground">Bhaktapur Multiple Campus, Tribhuvan University</p>
-                <p className="text-sm text-muted-foreground">Currently Pursuing</p>
+                <p className="text-sm text-muted-foreground mb-3">Currently Pursuing</p>
+                <div className="text-sm">
+                  <p className="font-medium text-foreground mb-2">Core Subjects:</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-muted-foreground">
+                    <span>• Data Structures & Algorithms</span>
+                    <span>• Web Technologies</span>
+                    <span>• Database Management Systems</span>
+                    <span>• Operating Systems</span>
+                    <span>• Software Engineering</span>
+                    <span>• Object-Oriented Programming</span>
+                    <span>• Computer Networks</span>
+                    <span>• Python Programming</span>
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -210,14 +256,46 @@ const EducationSection = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+              <a 
+                href="https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
+              >
                 <Star className="h-4 w-4 text-primary animate-pulse-slow" />
                 <span>Python Bootcamp</span>
-              </div>
-              <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+                <ExternalLink className="h-3 w-3 ml-auto" />
+              </a>
+              <a 
+                href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
+              >
                 <Star className="h-4 w-4 text-primary animate-pulse-slow" />
-                <span>Django Web Framework</span>
-              </div>
+                <span>Python For Beginners</span>
+                <ExternalLink className="h-3 w-3 ml-auto" />
+              </a>
+              <a 
+                href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
+              >
+                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
+                <span>Python For Data Science</span>
+                <ExternalLink className="h-3 w-3 ml-auto" />
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
+              >
+                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
+                <span>Hackathon Participation Certificate</span>
+                <ExternalLink className="h-3 w-3 ml-auto" />
+              </a>
             </div>
           </CardContent>
         </Card>
@@ -274,14 +352,18 @@ const LanguagesAchievementsSection = () => {
           <div className="space-y-3">
             <div className="flex items-start space-x-2 hover:scale-105 transition-transform duration-300">
               <Star className="h-4 w-4 text-primary mt-0.5 animate-pulse-slow" />
-              <span className="text-sm">Successfully built and deployed multiple web applications using Django</span>
+              <span className="text-sm">Participated in a 48-hour hackathon organized by CodeYaatra</span>
             </div>
             <div className="flex items-start space-x-2 hover:scale-105 transition-transform duration-300">
               <Star className="h-4 w-4 text-primary mt-0.5 animate-pulse-slow [animation-delay:200ms]" />
-              <span className="text-sm">Contributed to open-source projects on GitHub</span>
+              <span className="text-sm">Successfully built and deployed multiple web applications using Django</span>
             </div>
             <div className="flex items-start space-x-2 hover:scale-105 transition-transform duration-300">
               <Star className="h-4 w-4 text-primary mt-0.5 animate-pulse-slow [animation-delay:400ms]" />
+              <span className="text-sm">Contributed to open-source projects on GitHub</span>
+            </div>
+            <div className="flex items-start space-x-2 hover:scale-105 transition-transform duration-300">
+              <Star className="h-4 w-4 text-primary mt-0.5 animate-pulse-slow [animation-delay:600ms]" />
               <span className="text-sm">Completed Python and Django certification programs</span>
             </div>
           </div>
@@ -411,25 +493,37 @@ export default function Index() {
       title: "E-Commerce Platform",
       description: "Full-stack e-commerce solution with user authentication, payment integration, and admin dashboard",
       technologies: ["Django", "DRF", "MySQL", "PostgreSQL"],
-      icon: <Globe className="h-6 w-6" />
+      icon: <Globe className="h-6 w-6" />,
+      image: ecommerceProject,
+      github: "https://github.com/susanacharya12/django-ecommerce.git",
+      demo: "Coming Soon"
     },
     {
       title: "Student Management System",
       description: "Comprehensive system for managing student records, grades, and academic information",
       technologies: ["Django", "SQLite3", "Bootstrap"],
-      icon: <BookOpen className="h-6 w-6" />
+      icon: <BookOpen className="h-6 w-6" />,
+      image: studentManagement,
+      github: "https://github.com/susanacharya12/student-management-system.git",
+      demo: "Coming Soon"
     },
     {
       title: "E-Governance Portal",
       description: "Multi-language government portal with citizen services and document management",
       technologies: ["Django", "Bootstrap", "i18n"],
-      icon: <Award className="h-6 w-6" />
+      icon: <Award className="h-6 w-6" />,
+      image: egovernancePortal,
+      github: "https://github.com/susanacharya12",
+      demo: "Coming Soon"
     },
     {
-      title: "Urban Mobility App",
-      description: "Smart transportation app with real-time tracking and route optimization",
-      technologies: ["MongoDB", "Mongoose", "OpenCage API"],
-      icon: <MapPin className="h-6 w-6" />
+      title: "Python Project",
+      description: "Data analysis and automation scripts demonstrating Python programming skills",
+      technologies: ["Python", "Data Analysis", "Automation"],
+      icon: <Code className="h-6 w-6" />,
+      image: pythonProject,
+      github: "https://github.com/susanacharya12/Python-Project.git",
+      demo: "Coming Soon"
     }
   ];
 
@@ -534,13 +628,24 @@ export default function Index() {
               </a>
             </div>
             
-            <Button 
-              onClick={() => scrollToSection('contact')}
-              size="lg" 
-              className="animate-fade-in [animation-delay:1100ms] hover:scale-105 transition-transform"
-            >
-              Get In Touch <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
+            <div className="flex justify-center gap-4 animate-fade-in [animation-delay:1100ms]">
+              <Button 
+                onClick={() => scrollToSection('contact')}
+                size="lg" 
+                className="hover:scale-105 transition-transform"
+              >
+                Get In Touch <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+              <Button 
+                variant="outline"
+                size="lg" 
+                onClick={() => window.open('https://drive.google.com/file/d/13DoHYjq6JXhnMH5o8w0pyyZ7GnZaPRIw/view?usp=share_link', '_blank')}
+                className="hover:scale-105 transition-transform"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Download CV
+              </Button>
+            </div>
           </div>
         </div>
       </section>
