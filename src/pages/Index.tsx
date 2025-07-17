@@ -249,63 +249,105 @@ const EducationSection = () => {
           visibleItems[1] ? 'animate-fade-in-right opacity-100' : 'opacity-0 translate-x-8'
         }`}>
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Award className="h-5 w-5 text-primary animate-rotate-slow" />
-              <span>Certificates</span>
+            <CardTitle className="flex items-center space-x-2 text-xl">
+              <Award className="h-6 w-6 text-primary animate-rotate-slow" />
+              <span>📜 Certificates</span>
             </CardTitle>
+            <CardDescription className="text-base">Professional certifications and achievements</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="border-l-2 border-primary pl-4">
-                <h4 className="font-semibold text-sm">Python Bootcamp</h4>
-                <p className="text-xs text-muted-foreground mb-2">Completed a hands-on training covering Python basics, data structures, and practical programming exercises.</p>
-                <a 
-                  href="https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline text-xs flex items-center gap-1"
-                >
-                  Certificate Link <ExternalLink className="h-3 w-3" />
-                </a>
+          <CardContent className="space-y-6">
+            {/* Python Bootcamp */}
+            <div className="border-l-4 border-green-500 pl-6 py-4 bg-green-50/50 dark:bg-green-950/20 rounded-r-lg">
+              <div className="flex items-start space-x-3 mb-3">
+                <span className="text-2xl">🟩</span>
+                <div className="flex-1">
+                  <h4 className="font-bold text-lg text-green-700 dark:text-green-400 mb-2">Python Bootcamp</h4>
+                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
+                    Completed a hands-on training covering Python basics, data structures, and practical programming exercises.
+                  </p>
+                  <a 
+                    href="https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
+                  >
+                    🔗 View Certificate <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-              
-              <div className="border-l-2 border-primary pl-4">
-                <h4 className="font-semibold text-sm">Python for Beginners – Learns All The Basics Of Python</h4>
-                <p className="text-xs text-muted-foreground mb-2">Covered beginner-level topics including variables, data types, functions, loops, conditionals, and basic data structures like lists and dictionaries.</p>
-                <a 
-                  href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline text-xs flex items-center gap-1"
-                >
-                  Certificate Link <ExternalLink className="h-3 w-3" />
-                </a>
+            </div>
+
+            {/* Python for Beginners */}
+            <div className="border-l-4 border-blue-500 pl-6 py-4 bg-blue-50/50 dark:bg-blue-950/20 rounded-r-lg">
+              <div className="flex items-start space-x-3 mb-3">
+                <span className="text-2xl">🟦</span>
+                <div className="flex-1">
+                  <h4 className="font-bold text-lg text-blue-700 dark:text-blue-400 mb-2">Python for Beginners – Learns All The Basics Of Python</h4>
+                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
+                    Covered beginner-level topics including:
+                  </p>
+                  <ul className="list-disc list-inside text-base text-muted-foreground space-y-1 mb-3 ml-4">
+                    <li>Variables and data types</li>
+                    <li>Functions and loops</li>
+                    <li>Conditionals</li>
+                    <li>Lists and dictionaries</li>
+                  </ul>
+                  <a 
+                    href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
+                  >
+                    🔗 View Certificate <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-              
-              <div className="border-l-2 border-primary pl-4">
-                <h4 className="font-semibold text-sm">Python for Data Science – Real Time Exercises</h4>
-                <p className="text-xs text-muted-foreground mb-2">Focused on Python basics and object-oriented programming (OOP) concepts relevant to data science.</p>
-                <a 
-                  href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline text-xs flex items-center gap-1"
-                >
-                  Certificate Link <ExternalLink className="h-3 w-3" />
-                </a>
+            </div>
+
+            {/* Python for Data Science */}
+            <div className="border-l-4 border-yellow-500 pl-6 py-4 bg-yellow-50/50 dark:bg-yellow-950/20 rounded-r-lg">
+              <div className="flex items-start space-x-3 mb-3">
+                <span className="text-2xl">🟨</span>
+                <div className="flex-1">
+                  <h4 className="font-bold text-lg text-yellow-700 dark:text-yellow-400 mb-2">Python for Data Science – Real Time Exercises</h4>
+                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
+                    Focused on:
+                  </p>
+                  <ul className="list-disc list-inside text-base text-muted-foreground space-y-1 mb-3 ml-4">
+                    <li>Python fundamentals</li>
+                    <li>Object-Oriented Programming (OOP) concepts</li>
+                    <li>Use cases relevant to data science</li>
+                  </ul>
+                  <a 
+                    href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
+                  >
+                    🔗 View Certificate <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-              
-              <div className="border-l-2 border-primary pl-4">
-                <h4 className="font-semibold text-sm">Hackathon Certificate</h4>
-                <p className="text-xs text-muted-foreground mb-2">Awarded for actively participating in CODEYATRA, a 48-hour hackathon hosted at Himalayan College of Engineering.</p>
-                <a 
-                  href="https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline text-xs flex items-center gap-1"
-                >
-                  LinkedIn Profile for reference <ExternalLink className="h-3 w-3" />
-                </a>
+            </div>
+
+            {/* Hackathon Certificate */}
+            <div className="border-l-4 border-purple-500 pl-6 py-4 bg-purple-50/50 dark:bg-purple-950/20 rounded-r-lg">
+              <div className="flex items-start space-x-3 mb-3">
+                <span className="text-2xl">🏅</span>
+                <div className="flex-1">
+                  <h4 className="font-bold text-lg text-purple-700 dark:text-purple-400 mb-2">Hackathon Certificate – CODEYATRA</h4>
+                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
+                    Awarded for actively participating in <strong>CODEYATRA</strong>, a 48-hour hackathon hosted at <strong>Himalayan College of Engineering</strong>.
+                  </p>
+                  <a 
+                    href="https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
+                  >
+                    🔗 LinkedIn Profile for Reference <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </CardContent>
