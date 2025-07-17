@@ -255,47 +255,58 @@ const EducationSection = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              <a 
-                href="https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
-              >
-                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
-                <span>Python Bootcamp</span>
-                <ExternalLink className="h-3 w-3 ml-auto" />
-              </a>
-              <a 
-                href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
-              >
-                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
-                <span>Python For Beginners</span>
-                <ExternalLink className="h-3 w-3 ml-auto" />
-              </a>
-              <a 
-                href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
-              >
-                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
-                <span>Python For Data Science</span>
-                <ExternalLink className="h-3 w-3 ml-auto" />
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300 hover:text-primary"
-              >
-                <Star className="h-4 w-4 text-primary animate-pulse-slow" />
-                <span>Hackathon Participation Certificate</span>
-                <ExternalLink className="h-3 w-3 ml-auto" />
-              </a>
+            <div className="space-y-4">
+              <div className="border-l-2 border-primary pl-4">
+                <h4 className="font-semibold text-sm">Python Bootcamp</h4>
+                <p className="text-xs text-muted-foreground mb-2">Completed a hands-on training covering Python basics, data structures, and practical programming exercises.</p>
+                <a 
+                  href="https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline text-xs flex items-center gap-1"
+                >
+                  Certificate Link <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+              
+              <div className="border-l-2 border-primary pl-4">
+                <h4 className="font-semibold text-sm">Python for Beginners – Learns All The Basics Of Python</h4>
+                <p className="text-xs text-muted-foreground mb-2">Covered beginner-level topics including variables, data types, functions, loops, conditionals, and basic data structures like lists and dictionaries.</p>
+                <a 
+                  href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline text-xs flex items-center gap-1"
+                >
+                  Certificate Link <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+              
+              <div className="border-l-2 border-primary pl-4">
+                <h4 className="font-semibold text-sm">Python for Data Science – Real Time Exercises</h4>
+                <p className="text-xs text-muted-foreground mb-2">Focused on Python basics and object-oriented programming (OOP) concepts relevant to data science.</p>
+                <a 
+                  href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline text-xs flex items-center gap-1"
+                >
+                  Certificate Link <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+              
+              <div className="border-l-2 border-primary pl-4">
+                <h4 className="font-semibold text-sm">Hackathon Certificate</h4>
+                <p className="text-xs text-muted-foreground mb-2">Awarded for actively participating in CODEYATRA, a 48-hour hackathon hosted at Himalayan College of Engineering.</p>
+                <a 
+                  href="https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline text-xs flex items-center gap-1"
+                >
+                  LinkedIn Profile for reference <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -517,9 +528,9 @@ export default function Index() {
       demo: "Coming Soon"
     },
     {
-      title: "Python Project",
-      description: "Data analysis and automation scripts demonstrating Python programming skills",
-      technologies: ["Python", "Data Analysis", "Automation"],
+      title: "Python Projects",
+      description: "A collection of beginner-friendly projects built using pure Python (without any external frameworks or libraries), including: Password Generator, Random Number Game, Rock Paper Scissors, Treasure Island Game",
+      technologies: ["Python"],
       icon: <Code className="h-6 w-6" />,
       image: pythonProject,
       github: "https://github.com/susanacharya12/Python-Project.git",
@@ -530,8 +541,8 @@ export default function Index() {
   const skills = {
     Frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "Responsive Design"],
     Backend: ["Python", "Django", "Django REST Framework", "RESTful APIs"],
-    Databases: ["MySQL", "PostgreSQL", "SQLite3", "MongoDB"],
-    Tools: ["Git", "GitHub", "VS Code", "Postman", "Docker"],
+    Databases: ["MySQL", "SQLite3"],
+    Tools: ["Git", "GitHub", "VS Code"],
     "Soft Skills": ["Problem Solving", "Team Collaboration", "Communication", "Adaptability"]
   };
 
