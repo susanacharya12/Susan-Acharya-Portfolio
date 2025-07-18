@@ -139,10 +139,63 @@ const ProjectsSection = ({ projects }: { projects: any[] }) => {
 };
 
 // Skills Section Component with category animations
-const SkillsSection = ({ skills }: { skills: any }) => {
+const SkillsSection = () => {
   const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
-  const skillCategories = Object.entries(skills);
-  const [containerRef, visibleItems] = useStaggerAnimation(skillCategories.length, 200);
+  const [containerRef, visibleItems] = useStaggerAnimation(6, 200);
+
+  const skillCategories = [
+    {
+      title: "💻 Frontend",
+      skills: [
+        { name: "HTML5", icon: "https://img.icons8.com/color/48/html-5--v1.png" },
+        { name: "CSS3", icon: "https://img.icons8.com/color/48/css3.png" },
+        { name: "JavaScript", icon: "https://img.icons8.com/color/48/javascript--v1.png" },
+        { name: "Bootstrap", icon: "https://img.icons8.com/color/48/bootstrap.png" },
+        { name: "Responsive Design", icon: "https://img.icons8.com/fluency/48/responsive.png" }
+      ]
+    },
+    {
+      title: "🛠️ Backend",
+      skills: [
+        { name: "Python", icon: "https://img.icons8.com/color/48/python--v1.png" },
+        { name: "Django", icon: "https://img.icons8.com/color/48/django.png" },
+        { name: "Django REST Framework", icon: "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/external-django-a-high-level-python-web-framework-that-encourages-rapid-development-logo-shadow-tal-revivo.png" },
+        { name: "RESTful APIs", icon: "https://img.icons8.com/ios-filled/48/api-settings.png" }
+      ]
+    },
+    {
+      title: "🗄️ Databases",
+      skills: [
+        { name: "MySQL", icon: "https://img.icons8.com/color/48/mysql-logo.png" },
+        { name: "SQLite3", icon: "https://img.icons8.com/color/48/sqlite.png" }
+      ]
+    },
+    {
+      title: "🧰 Tools",
+      skills: [
+        { name: "Git", icon: "https://img.icons8.com/color/48/git.png" },
+        { name: "GitHub", icon: "https://img.icons8.com/ios-glyphs/48/github.png" },
+        { name: "Visual Studio Code", icon: "https://img.icons8.com/color/48/visual-studio-code-2019.png" },
+        { name: "PyCharm", icon: "https://img.icons8.com/color/48/pycharm.png" }
+      ]
+    },
+    {
+      title: "🔗 APIs",
+      skills: [
+        { name: "REST API Design", icon: "https://img.icons8.com/ios-filled/48/api-settings.png" },
+        { name: "API Integration", icon: "https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/48/external-api-user-interface-icongeek26-linear-colour-icongeek26.png" }
+      ]
+    },
+    {
+      title: "💡 Soft Skills",
+      skills: [
+        { name: "Problem Solving", icon: "🧠" },
+        { name: "Team Collaboration", icon: "🤝" },
+        { name: "Communication", icon: "🗣️" },
+        { name: "Adaptability", icon: "🔄" }
+      ]
+    }
+  ];
 
   return (
     <>
@@ -155,9 +208,9 @@ const SkillsSection = ({ skills }: { skills: any }) => {
         Skills & Technologies
       </h2>
       <div ref={containerRef as any} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {skillCategories.map(([category, skillList], index) => (
+        {skillCategories.map((category, index) => (
           <Card 
-            key={category} 
+            key={category.title} 
             className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
               visibleItems[index] 
                 ? 'animate-fade-in-up opacity-100' 
@@ -165,24 +218,32 @@ const SkillsSection = ({ skills }: { skills: any }) => {
             }`}
           >
             <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Code className="h-5 w-5 text-primary animate-bounce-gentle" />
-                <span>{category}</span>
-              </CardTitle>
+              <CardTitle className="text-lg font-bold mb-4">{category.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-2">
-                {(skillList as string[]).map((skill, skillIndex) => (
-                  <Badge 
-                    key={skill} 
-                    variant="outline" 
-                    className={`hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 ${
+              <div className="space-y-4">
+                {category.skills.map((skill, skillIndex) => (
+                  <div 
+                    key={skill.name}
+                    className={`flex items-center space-x-3 p-3 rounded-lg bg-background/50 hover:bg-muted transition-all duration-300 hover:scale-105 ${
                       visibleItems[index] ? 'animate-fade-in' : 'opacity-0'
                     }`}
                     style={{ animationDelay: `${skillIndex * 100}ms` }}
                   >
-                    {skill}
-                  </Badge>
+                    {skill.icon.startsWith('http') ? (
+                      <img 
+                        src={skill.icon} 
+                        alt={skill.name} 
+                        className="w-8 h-8 object-contain"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <span className="text-2xl">{skill.icon}</span>
+                    )}
+                    <span className="font-medium">{skill.name}</span>
+                  </div>
                 ))}
               </div>
             </CardContent>
@@ -196,7 +257,7 @@ const SkillsSection = ({ skills }: { skills: any }) => {
 // Education Section Component
 const EducationSection = () => {
   const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
-  const [containerRef, visibleItems] = useStaggerAnimation(2, 300);
+  const [containerRef, containerVisible] = useScrollAnimation({ threshold: 0.3 });
 
   return (
     <>
@@ -206,149 +267,119 @@ const EducationSection = () => {
           titleVisible ? 'animate-fade-in-down opacity-100' : 'opacity-0 -translate-y-8'
         }`}
       >
-        Education & Certificates
+        🎓 Education
       </h2>
       
-      <div ref={containerRef as any} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Education */}
+      <div ref={containerRef as any} className="max-w-4xl mx-auto">
+        <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+          containerVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
+        }`}>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-3 text-2xl">
+              <GraduationCap className="h-8 w-8 text-primary animate-bounce-gentle" />
+              <span>BSc. Computer Science and Information Technology</span>
+            </CardTitle>
+            <CardDescription className="text-lg">
+              Bhaktapur Multiple Campus, Tribhuvan University (IOST) • 📍 Currently Pursuing
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="border-l-4 border-primary pl-6 py-4 bg-primary/5 rounded-r-lg">
+              <p className="text-base leading-relaxed mb-4">
+                The BSc. CSIT program is a four-year undergraduate degree blending theoretical knowledge and practical skills in computing, software development, and IT. It prepares students for both advanced studies and professional careers in the tech industry.
+              </p>
+              
+              <div>
+                <h4 className="font-bold text-lg mb-4 text-primary">Core Subjects:</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {[
+                    "Data Structures & Algorithms",
+                    "Web Technologies", 
+                    "Database Management Systems",
+                    "Operating Systems",
+                    "Software Engineering",
+                    "Object-Oriented Programming",
+                    "Computer Networks",
+                    "Java",
+                    ".NET",
+                    "Computer Architecture"
+                  ].map((subject, index) => (
+                    <div key={subject} className="flex items-center space-x-2 p-2 rounded-lg bg-background/50 hover:bg-muted transition-all duration-300">
+                      <span className="text-primary">•</span>
+                      <span className="text-sm font-medium">{subject}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-l-4 border-secondary pl-6 py-4 bg-secondary/5 rounded-r-lg">
+              <h4 className="font-bold text-lg mb-2">+2 Science</h4>
+              <p className="text-muted-foreground">Sudurpaschimanchal Academy</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
+  );
+};
+
+// Certificates Section Component
+const CertificatesSection = () => {
+  const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
+  const [containerRef, visibleItems] = useStaggerAnimation(2, 200);
+
+  return (
+    <>
+      <h2 
+        ref={titleRef as any}
+        className={`text-4xl font-bold text-center mb-12 transition-all duration-1000 ${
+          titleVisible ? 'animate-fade-in-down opacity-100' : 'opacity-0 -translate-y-8'
+        }`}
+      >
+        📜 Certificates
+      </h2>
+      
+      <div ref={containerRef as any} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
           visibleItems[0] ? 'animate-fade-in-left opacity-100' : 'opacity-0 -translate-x-8'
         }`}>
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <GraduationCap className="h-5 w-5 text-primary animate-bounce-gentle" />
-              <span>Education</span>
+            <CardTitle className="flex items-center space-x-3 text-xl">
+              <Award className="h-6 w-6 text-primary" />
+              <span>Python Bootcamp</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              <div className="border-l-2 border-primary pl-4 hover:border-l-4 transition-all duration-300">
-                <h3 className="font-semibold">BSc. Computer Science and Information Technology</h3>
-                <p className="text-muted-foreground">Bhaktapur Multiple Campus, Tribhuvan University</p>
-                <p className="text-sm text-muted-foreground mb-3">Currently Pursuing</p>
-                <div className="text-sm">
-                  <p className="font-medium text-foreground mb-2">Core Subjects:</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-muted-foreground">
-                    <span>• Data Structures & Algorithms</span>
-                    <span>• Web Technologies</span>
-                    <span>• Database Management Systems</span>
-                    <span>• Operating Systems</span>
-                    <span>• Software Engineering</span>
-                    <span>• Object-Oriented Programming</span>
-                    <span>• Computer Networks</span>
-                    <span>• Python Programming</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p className="text-muted-foreground mb-4">
+              Completed comprehensive training covering Python fundamentals and practical applications.
+            </p>
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => window.open("https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/", "_blank")}
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              View Certificate
+            </Button>
           </CardContent>
         </Card>
 
-        {/* Certificates */}
         <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
           visibleItems[1] ? 'animate-fade-in-right opacity-100' : 'opacity-0 translate-x-8'
         }`}>
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2 text-xl">
-              <Award className="h-6 w-6 text-primary animate-rotate-slow" />
-              <span>📜 Certificates</span>
+            <CardTitle className="flex items-center space-x-3 text-xl">
+              <Award className="h-6 w-6 text-primary" />
+              <span>Django Web Framework</span>
             </CardTitle>
-            <CardDescription className="text-base">Professional certifications and achievements</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Python Bootcamp */}
-            <div className="border-l-4 border-green-500 pl-6 py-4 bg-green-50/50 dark:bg-green-950/20 rounded-r-lg">
-              <div className="flex items-start space-x-3 mb-3">
-                <span className="text-2xl">🟩</span>
-                <div className="flex-1">
-                  <h4 className="font-bold text-lg text-green-700 dark:text-green-400 mb-2">Python Bootcamp</h4>
-                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
-                    Completed a hands-on training covering Python basics, data structures, and practical programming exercises.
-                  </p>
-                  <a 
-                    href="https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
-                  >
-                    🔗 View Certificate <ExternalLink className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Python for Beginners */}
-            <div className="border-l-4 border-blue-500 pl-6 py-4 bg-blue-50/50 dark:bg-blue-950/20 rounded-r-lg">
-              <div className="flex items-start space-x-3 mb-3">
-                <span className="text-2xl">🟦</span>
-                <div className="flex-1">
-                  <h4 className="font-bold text-lg text-blue-700 dark:text-blue-400 mb-2">Python for Beginners – Learns All The Basics Of Python</h4>
-                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
-                    Covered beginner-level topics including:
-                  </p>
-                  <ul className="list-disc list-inside text-base text-muted-foreground space-y-1 mb-3 ml-4">
-                    <li>Variables and data types</li>
-                    <li>Functions and loops</li>
-                    <li>Conditionals</li>
-                    <li>Lists and dictionaries</li>
-                  </ul>
-                  <a 
-                    href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
-                  >
-                    🔗 View Certificate <ExternalLink className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Python for Data Science */}
-            <div className="border-l-4 border-yellow-500 pl-6 py-4 bg-yellow-50/50 dark:bg-yellow-950/20 rounded-r-lg">
-              <div className="flex items-start space-x-3 mb-3">
-                <span className="text-2xl">🟨</span>
-                <div className="flex-1">
-                  <h4 className="font-bold text-lg text-yellow-700 dark:text-yellow-400 mb-2">Python for Data Science – Real Time Exercises</h4>
-                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
-                    Focused on:
-                  </p>
-                  <ul className="list-disc list-inside text-base text-muted-foreground space-y-1 mb-3 ml-4">
-                    <li>Python fundamentals</li>
-                    <li>Object-Oriented Programming (OOP) concepts</li>
-                    <li>Use cases relevant to data science</li>
-                  </ul>
-                  <a 
-                    href="https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
-                  >
-                    🔗 View Certificate <ExternalLink className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Hackathon Certificate */}
-            <div className="border-l-4 border-purple-500 pl-6 py-4 bg-purple-50/50 dark:bg-purple-950/20 rounded-r-lg">
-              <div className="flex items-start space-x-3 mb-3">
-                <span className="text-2xl">🏅</span>
-                <div className="flex-1">
-                  <h4 className="font-bold text-lg text-purple-700 dark:text-purple-400 mb-2">Hackathon Certificate – CODEYATRA</h4>
-                  <p className="text-base text-muted-foreground mb-3 leading-relaxed">
-                    Awarded for actively participating in <strong>CODEYATRA</strong>, a 48-hour hackathon hosted at <strong>Himalayan College of Engineering</strong>.
-                  </p>
-                  <a 
-                    href="https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium hover:underline text-base"
-                  >
-                    🔗 LinkedIn Profile for Reference <ExternalLink className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
+          <CardContent>
+            <p className="text-muted-foreground mb-4">
+              Mastered Django framework for building robust web applications and APIs.
+            </p>
+            <div className="text-center text-muted-foreground">
+              <span className="text-sm">Certificate available upon request</span>
             </div>
           </CardContent>
         </Card>
@@ -658,7 +689,7 @@ export default function Index() {
             {/* Social Links */}
             <div className="flex justify-center space-x-6 mb-8 animate-fade-in [animation-delay:900ms]">
               <a 
-                href="https://linkedin.com/in/susan-acharya1618" 
+                href="https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 hover:shadow-lg"
@@ -722,14 +753,21 @@ export default function Index() {
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-card/50">
         <div className="container mx-auto px-4">
-          <SkillsSection skills={skills} />
+          <SkillsSection />
         </div>
       </section>
 
-      {/* Education & Certificates */}
+      {/* Education Section */}
       <section id="education" className="py-20">
         <div className="container mx-auto px-4">
           <EducationSection />
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      <section className="py-20 bg-card/50">
+        <div className="container mx-auto px-4">
+          <CertificatesSection />
         </div>
       </section>
 
