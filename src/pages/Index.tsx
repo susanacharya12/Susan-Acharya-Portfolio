@@ -159,7 +159,6 @@ const SkillsSection = () => {
       skills: [
         { name: "Python", icon: "https://img.icons8.com/color/48/python--v1.png" },
         { name: "Django", icon: "https://img.icons8.com/color/48/django.png" },
-        { name: "Django REST Framework", icon: "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/external-django-a-high-level-python-web-framework-that-encourages-rapid-development-logo-shadow-tal-revivo.png" },
         { name: "RESTful APIs", icon: "https://img.icons8.com/ios-filled/48/api-settings.png" }
       ]
     },
@@ -327,7 +326,7 @@ const EducationSection = () => {
 // Certificates Section Component
 const CertificatesSection = () => {
   const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
-  const [containerRef, visibleItems] = useStaggerAnimation(2, 200);
+  const [containerRef, visibleItems] = useStaggerAnimation(3, 200);
 
   return (
     <>
@@ -346,18 +345,15 @@ const CertificatesSection = () => {
         }`}>
           <CardHeader>
             <CardTitle className="flex items-center space-x-3 text-xl">
-              <Award className="h-6 w-6 text-primary" />
-              <span>Python Bootcamp</span>
+              <span className="text-2xl">✅</span>
+              <span>Python For Beginners – Learn All The Basics Of Python</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground mb-4">
-              Completed comprehensive training covering Python fundamentals and practical applications.
-            </p>
             <Button 
               variant="outline" 
               className="w-full"
-              onClick={() => window.open("https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/", "_blank")}
+              onClick={() => window.open("https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/", "_blank")}
             >
               <ExternalLink className="h-4 w-4 mr-2" />
               View Certificate
@@ -370,17 +366,43 @@ const CertificatesSection = () => {
         }`}>
           <CardHeader>
             <CardTitle className="flex items-center space-x-3 text-xl">
-              <Award className="h-6 w-6 text-primary" />
-              <span>Django Web Framework</span>
+              <span className="text-2xl">✅</span>
+              <span>Python For Data Science – Real Time Exercises</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => window.open("https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/", "_blank")}
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              View Certificate
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 md:col-span-2 ${
+          visibleItems[2] ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
+        }`}>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-3 text-xl">
+              <span className="text-2xl">🏆</span>
+              <span>Hackathon Certificate</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              Mastered Django framework for building robust web applications and APIs.
+              Participated in a 48-hour hackathon organized by Code Yatra at Himalayan College of Engineering
             </p>
-            <div className="text-center text-muted-foreground">
-              <span className="text-sm">Certificate available upon request</span>
-            </div>
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => window.open("https://www.linkedin.com/in/susan-acharya1618?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", "_blank")}
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              LinkedIn Proof
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -656,7 +678,17 @@ export default function Index() {
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-bounce [animation-delay:-1s] [animation-duration:3s]"></div>
+          <div className="absolute top-40 right-20 w-16 h-16 bg-blue-500/10 rounded-full animate-bounce [animation-delay:-2s] [animation-duration:4s]"></div>
+          <div className="absolute bottom-32 left-20 w-12 h-12 bg-green-500/10 rounded-full animate-bounce [animation-delay:-3s] [animation-duration:5s]"></div>
+          <div className="absolute bottom-20 right-10 w-24 h-24 bg-purple-500/10 rounded-full animate-bounce [animation-delay:-4s] [animation-duration:3.5s]"></div>
+          <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-yellow-500/10 rounded-full animate-bounce [animation-delay:-5s] [animation-duration:6s]"></div>
+          <div className="absolute top-1/3 right-1/3 w-14 h-14 bg-pink-500/10 rounded-full animate-bounce [animation-delay:-6s] [animation-duration:4.5s]"></div>
+        </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-blue-500/5 animate-pulse [animation-duration:4s]" />
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
