@@ -299,6 +299,8 @@ const EducationSection = () => {
                     "Software Engineering",
                     "Object-Oriented Programming",
                     "Computer Networks",
+                    "C Programming",
+                    "Microprocessor",
                     "Java",
                     ".NET",
                     "Computer Architecture"
