@@ -159,6 +159,7 @@ const SkillsSection = () => {
       skills: [
         { name: "Python", icon: "https://img.icons8.com/color/48/python--v1.png" },
         { name: "Django", icon: "https://img.icons8.com/color/48/django.png" },
+        { name: "Django REST Framework", icon: "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/48/external-django-a-high-level-python-web-framework-that-encourages-rapid-development-logo-shadow-tal-revivo.png" },
         { name: "RESTful APIs", icon: "https://img.icons8.com/ios-filled/48/api-settings.png" }
       ]
     },
@@ -328,7 +329,7 @@ const EducationSection = () => {
 // Certificates Section Component
 const CertificatesSection = () => {
   const [titleRef, titleVisible] = useScrollAnimation({ threshold: 0.3 });
-  const [containerRef, visibleItems] = useStaggerAnimation(3, 200);
+  const [containerRef, visibleItems] = useStaggerAnimation(4, 200);
 
   return (
     <>
@@ -384,8 +385,29 @@ const CertificatesSection = () => {
           </CardContent>
         </Card>
 
+        <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+          visibleItems[2] ? 'animate-fade-in-left opacity-100' : 'opacity-0 -translate-x-8'
+        }`}>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-3 text-xl">
+              <span className="text-2xl">✅</span>
+              <span>Python Programming : Python Bootcamp For Beginners</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => window.open("https://www.udemy.com/certificate/UC-0bffe5ad-cd58-40fd-ab5d-a536fd3c6837/?utm_campaign=email&utm_medium=email&utm_source=sendgrid.com", "_blank")}
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              View Certificate
+            </Button>
+          </CardContent>
+        </Card>
+
         <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 md:col-span-2 ${
-          visibleItems[2] ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
+          visibleItems[3] ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
         }`}>
           <CardHeader>
             <CardTitle className="flex items-center space-x-3 text-xl">
