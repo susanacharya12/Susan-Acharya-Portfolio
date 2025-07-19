@@ -353,6 +353,12 @@ const CertificatesSection = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
+            <p className="text-muted-foreground mb-4">
+              Variables and Data Types, Operators and Expressions, Conditional Statements (if, else, elif), 
+              Loops (for, while), Functions and Parameters, Lists, Tuples, Dictionaries, Sets, 
+              Python for Data Science - Python Basics (Variables, Data Types, Control Flow), 
+              Basic Statistics with Python NumPy
+            </p>
             <Button 
               variant="outline" 
               className="w-full"
@@ -395,6 +401,12 @@ const CertificatesSection = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
+            <p className="text-muted-foreground mb-4">
+              Python Installation and Setup, Variables and Data Types, Conditional Statements (if, else, elif), 
+              Loops (for, while), Functions and Scope, Lists, Tuples, Dictionaries, and Sets, 
+              String Formatting and Operations, File Input/Output, Error and Exception Handling, 
+              Modules and Packages, Intro to Object-Oriented Programming (Classes and Objects)
+            </p>
             <Button 
               variant="outline" 
               className="w-full"
@@ -416,6 +428,9 @@ const CertificatesSection = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
+            <p className="text-muted-foreground mb-4">
+              Participated in a 48-hour hackathon organized by Code Yantra at Himalayan College of Engineering
+            </p>
             <Button 
               variant="outline" 
               className="w-full"
