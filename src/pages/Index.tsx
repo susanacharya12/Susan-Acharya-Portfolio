@@ -418,8 +418,8 @@ const CertificatesSection = () => {
           </CardContent>
         </Card>
 
-        <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 md:col-span-2 ${
-          visibleItems[3] ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-8'
+        <Card className={`transition-all duration-700 hover:shadow-lg hover:-translate-y-1 ${
+          visibleItems[3] ? 'animate-fade-in-right opacity-100' : 'opacity-0 translate-x-8'
         }`}>
           <CardHeader>
             <CardTitle className="flex items-center space-x-3 text-xl">
