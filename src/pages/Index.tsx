@@ -416,9 +416,6 @@ const CertificatesSection = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground mb-4">
-              Participated in a 48-hour hackathon organized by Code Yatra at Himalayan College of Engineering
-            </p>
             <Button 
               variant="outline" 
               className="w-full"
