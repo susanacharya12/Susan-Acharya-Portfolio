@@ -354,10 +354,7 @@ const CertificatesSection = () => {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              Variables and Data Types, Operators and Expressions, Conditional Statements (if, else, elif), 
-              Loops (for, while), Functions and Parameters, Lists, Tuples, Dictionaries, Sets, 
-              Python for Data Science - Python Basics (Variables, Data Types, Control Flow), 
-              Basic Statistics with Python NumPy
+              This course covers Python essentials like variables, data types, operators, conditional statements, loops, functions, and key data structures such as lists, tuples, dictionaries, and sets.
             </p>
             <Button 
               variant="outline" 
@@ -380,6 +377,9 @@ const CertificatesSection = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
+            <p className="text-muted-foreground mb-4">
+              Learn Python for Data Science through real-time exercises. Practice with variables, control flow, data structures, NumPy, and basic statistics to analyze and manipulate data efficiently.
+            </p>
             <Button 
               variant="outline" 
               className="w-full"
@@ -402,10 +402,7 @@ const CertificatesSection = () => {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              Python Installation and Setup, Variables and Data Types, Conditional Statements (if, else, elif), 
-              Loops (for, while), Functions and Scope, Lists, Tuples, Dictionaries, and Sets, 
-              String Formatting and Operations, File Input/Output, Error and Exception Handling, 
-              Modules and Packages, Intro to Object-Oriented Programming (Classes and Objects)
+              An introductory course covering core Python concepts including variables, data types, operators, control flow, functions, and data structures to build a solid foundation in programming.
             </p>
             <Button 
               variant="outline" 
@@ -429,7 +426,7 @@ const CertificatesSection = () => {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground mb-4">
-              Participated in a 48-hour hackathon organized by Code Yantra at Himalayan College of Engineering
+              Participated in a 48-hour hackathon organized by Code Yantra at Himalayan College of Engineering, showcasing problem-solving and teamwork skills under time constraints
             </p>
             <Button 
               variant="outline" 
@@ -791,7 +788,7 @@ export default function Index() {
               <Button 
                 variant="outline"
                 size="lg" 
-                onClick={() => window.open('https://drive.google.com/file/d/13DoHYjq6JXhnMH5o8w0pyyZ7GnZaPRIw/view?usp=share_link', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1PlTp-izUra0ZMO5jMdZZltMj5J-DxgxU/view?usp=share_link', '_blank')}
                 className="hover:scale-105 transition-transform"
               >
                 <Download className="mr-2 h-4 w-4" />
@@ -857,7 +854,7 @@ export default function Index() {
       <footer className="bg-card border-t py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground">
-            © 2024 Susan Acharya. Built with React & TypeScript.
+            © 2024 Susan Acharya. All rights reserved.
           </p>
         </div>
       </footer>
