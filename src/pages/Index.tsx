@@ -727,11 +727,11 @@ export default function Index() {
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {/* Photo */}
             <div className="mb-8 animate-scale-in-center [animation-delay:200ms]">
-              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20 hover:ring-primary/40 transition-all duration-500 hover:scale-110 hover:shadow-3xl animate-float">
+              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20 transition-all duration-500 animate-float">
                 <img 
                   src="/lovable-uploads/5058cdc6-c2f4-4cb1-b8cc-303bca9df609.png"
                   alt="Susan Acharya" 
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
