@@ -726,8 +726,8 @@ export default function Index() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {/* Photo */}
-            <div className="mb-8 animate-scale-in-center [animation-delay:200ms]">
-              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20 transition-all duration-500 animate-float">
+            <div className="mb-8">
+              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20">
                 <img 
                   src="/lovable-uploads/5058cdc6-c2f4-4cb1-b8cc-303bca9df609.png"
                   alt="Susan Acharya" 
