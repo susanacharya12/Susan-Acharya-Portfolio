@@ -359,7 +359,7 @@ const CertificatesSection = () => {
             <Button 
               variant="outline" 
               className="w-full"
-              onClick={() => window.open("https://www.udemy.com/certificate/UC-175f7a52-2f5f-486c-a9d4-039f953669ef/", "_blank")}
+              onClick={() => window.open("https://www.udemy.com/certificate/UC-fa0f1b21-29d8-4950-b675-abeaf438dbc7/", "_blank")}
             >
               <ExternalLink className="h-4 w-4 mr-2" />
               View Certificate
