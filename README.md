@@ -1,5 +1,4 @@
-# Welcome to your Lovable project
-
+# Welcome to My Portfolio
 ## Project info
 
 **URL**:  http://susan-portfolio.lovable.app
