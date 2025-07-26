@@ -67,11 +67,11 @@ const ProjectsSection = ({ projects }: { projects: any[] }) => {
         {projects.map((project, index) => (
           <Card 
             key={index} 
-            className={`group hover:shadow-2xl transition-all duration-500 transform ${
+            className={`group glass-card card-glow transition-all duration-700 transform ${
               visibleItems[index] 
                 ? 'animate-scale-in opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-8'
-            } hover:-translate-y-2 hover:scale-105`}
+            } hover:-translate-y-4 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20`}
           >
             {project.image && (
               <div className="overflow-hidden rounded-t-lg">
@@ -710,40 +710,47 @@ export default function Index() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden hero-gradient">
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-bounce [animation-delay:-1s] [animation-duration:3s]"></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-blue-500/10 rounded-full animate-bounce [animation-delay:-2s] [animation-duration:4s]"></div>
-          <div className="absolute bottom-32 left-20 w-12 h-12 bg-green-500/10 rounded-full animate-bounce [animation-delay:-3s] [animation-duration:5s]"></div>
-          <div className="absolute bottom-20 right-10 w-24 h-24 bg-purple-500/10 rounded-full animate-bounce [animation-delay:-4s] [animation-duration:3.5s]"></div>
-          <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-yellow-500/10 rounded-full animate-bounce [animation-delay:-5s] [animation-duration:6s]"></div>
-          <div className="absolute top-1/3 right-1/3 w-14 h-14 bg-pink-500/10 rounded-full animate-bounce [animation-delay:-6s] [animation-duration:4.5s]"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-[hsl(var(--accent-blue))]/20 rounded-full floating-animation [animation-delay:-1s]"></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-[hsl(var(--accent-emerald))]/20 to-primary/20 rounded-full floating-animation [animation-delay:-2s]"></div>
+          <div className="absolute bottom-32 left-20 w-20 h-20 bg-gradient-to-br from-[hsl(var(--accent-pink))]/20 to-[hsl(var(--gradient-middle))]/20 rounded-full floating-animation [animation-delay:-3s]"></div>
+          <div className="absolute bottom-20 right-10 w-36 h-36 bg-gradient-to-br from-[hsl(var(--accent-orange))]/15 to-primary/15 rounded-full floating-animation [animation-delay:-4s]"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-br from-primary/25 to-[hsl(var(--gradient-end))]/25 rounded-full floating-animation [animation-delay:-5s]"></div>
+          <div className="absolute top-1/3 right-1/3 w-28 h-28 bg-gradient-to-br from-[hsl(var(--gradient-middle))]/20 to-[hsl(var(--accent-blue))]/20 rounded-full floating-animation [animation-delay:-6s]"></div>
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-blue-500/5 animate-pulse [animation-duration:4s]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.2)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-[hsl(var(--accent-blue))]/10" />
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {/* Photo */}
-            <div className="mb-8">
-              <div className="w-48 h-48 mx-auto rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20">
-                <img 
-                  src="/lovable-uploads/5058cdc6-c2f4-4cb1-b8cc-303bca9df609.png"
-                  alt="Susan Acharya" 
-                  className="w-full h-full object-cover"
-                />
+            <div className="mb-12">
+              <div className="relative w-56 h-56 mx-auto">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] p-1 animate-spin [animation-duration:8s]">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-background">
+                    <img 
+                      src="/lovable-uploads/5058cdc6-c2f4-4cb1-b8cc-303bca9df609.png"
+                      alt="Susan Acharya" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none"></div>
               </div>
             </div>
 
             {/* Name with Typewriter */}
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">
-              <span className="text-foreground">{typewriterText}</span>
+            <h1 className="text-6xl md:text-8xl font-bold mb-6">
+              <span className="gradient-text">{typewriterText}</span>
               <span className="animate-pulse text-primary">|</span>
             </h1>
             
-            <h2 className="text-2xl md:text-3xl text-primary font-semibold mb-6 animate-fade-in [animation-delay:500ms]">
-              Junior Django & Python Developer
+            <h2 className="text-3xl md:text-4xl font-semibold mb-8 animate-fade-in [animation-delay:500ms]">
+              <span className="bg-gradient-to-r from-[hsl(var(--accent-blue))] to-[hsl(var(--accent-emerald))] bg-clip-text text-transparent">
+                Junior Django & Python Developer
+              </span>
             </h2>
             
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-in [animation-delay:700ms]">
@@ -777,11 +784,11 @@ export default function Index() {
               </a>
             </div>
             
-            <div className="flex justify-center gap-4 animate-fade-in [animation-delay:1100ms]">
+            <div className="flex justify-center gap-6 animate-fade-in [animation-delay:1100ms]">
               <Button 
                 onClick={() => scrollToSection('contact')}
                 size="lg" 
-                className="hover:scale-105 transition-transform"
+                className="btn-primary shadow-2xl hover:shadow-primary/40"
               >
                 Get In Touch <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
@@ -789,7 +796,7 @@ export default function Index() {
                 variant="outline"
                 size="lg" 
                 onClick={() => window.open('https://drive.google.com/file/d/1PlTp-izUra0ZMO5jMdZZltMj5J-DxgxU/view?usp=share_link', '_blank')}
-                className="hover:scale-105 transition-transform"
+                className="glass-card border-primary/30 hover:border-primary/60 hover:bg-primary/10 hover:scale-105 transition-all duration-500"
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download CV
