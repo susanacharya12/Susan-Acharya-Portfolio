@@ -1,0 +1,180 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 262 83% 58%;
+
+    --radius: 0.75rem;
+    
+    /* Custom gradient colors */
+    --gradient-start: 262 83% 58%;
+    --gradient-middle: 252 82% 65%;
+    --gradient-end: 242 81% 72%;
+    
+    /* Glass effect colors */
+    --glass-bg: 222 84% 4.9% / 0.8;
+    --glass-border: 210 40% 98% / 0.1;
+    
+    /* Accent colors */
+    --accent-blue: 217 91% 60%;
+    --accent-emerald: 142 71% 45%;
+    --accent-pink: 322 81% 68%;
+    --accent-orange: 25 95% 53%;
+  }
+
+  .dark {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 262 83% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 md:px-6 lg:px-8 mx-auto;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] text-primary-foreground rounded-full px-8 py-3 font-semibold transition-all duration-500 hover:shadow-2xl hover:shadow-primary/25 active:scale-[0.96] hover:scale-105;
+  }
+  
+  .section {
+    @apply py-16 md:py-20 lg:py-28;
+  }
+  
+  .glass-card {
+    @apply bg-[hsl(var(--glass-bg))] backdrop-blur-xl border border-[hsl(var(--glass-border))] rounded-2xl shadow-2xl hover:shadow-primary/10 transition-all duration-500;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] bg-clip-text text-transparent;
+  }
+  
+  .hero-gradient {
+    background: radial-gradient(ellipse at center, hsl(var(--primary) / 0.15) 0%, transparent 70%),
+                linear-gradient(135deg, hsl(var(--gradient-start) / 0.1) 0%, hsl(var(--gradient-middle) / 0.08) 50%, hsl(var(--gradient-end) / 0.1) 100%);
+  }
+  
+  .card-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .card-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] transition-transform duration-1000;
+  }
+  
+  .card-glow:hover::before {
+    @apply translate-x-[100%];
+  }
+  
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .wave-animation {
+    animation: wave 12s linear infinite;
+    animation-delay: -2s;
+    transform-origin: center bottom;
+  }
+  
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 400ms, transform 400ms;
+  }
+  
+  .page-transition-exit {
+    opacity: 1;
+  }
+  
+  .page-transition-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
