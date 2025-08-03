@@ -667,7 +667,7 @@ export default function Index() {
     },
     {
       title: "Todo List",
-      description: "A simple and intuitive task management application built with HTML, CSS, and Django. Features include task creation, completion tracking, and a clean user interface for organizing daily activities.",
+      description: "A clean, responsive Todo List application built with HTML, CSS, and Django. Manage your daily tasks effortlessly with a modern UI featuring task creation, editing, and deletion.",
       technologies: ["HTML", "CSS", "Django"],
       icon: <CheckSquare className="h-6 w-6" />,
       image: todoListProject,
