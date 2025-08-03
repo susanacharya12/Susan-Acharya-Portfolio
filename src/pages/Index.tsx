@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Download, ExternalLink, Code, Database, Globe, Award, Star, Trophy, BookOpen, GraduationCap } from "lucide-react";
+import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Download, ExternalLink, Code, Database, Globe, Award, Star, Trophy, BookOpen, GraduationCap, CheckSquare } from "lucide-react";
 import ecommerceProject from "@/assets/ecommerce-project.jpg";
 import studentManagement from "@/assets/student-management.jpg";
 import egovernancePortal from "@/assets/egovernance-portal.jpg";
 import pythonProject from "@/assets/python-project.jpg";
+import todoListProject from "@/assets/todo-list-project.jpg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -662,6 +663,15 @@ export default function Index() {
       icon: <Code className="h-6 w-6" />,
       image: pythonProject,
       github: "https://github.com/susanacharya12/Python-Project.git",
+      demo: "Coming Soon"
+    },
+    {
+      title: "Todo List",
+      description: "A simple and intuitive task management application built with HTML, CSS, and Django. Features include task creation, completion tracking, and a clean user interface for organizing daily activities.",
+      technologies: ["HTML", "CSS", "Django"],
+      icon: <CheckSquare className="h-6 w-6" />,
+      image: todoListProject,
+      github: "https://github.com/susanacharya12/todo-list.git",
       demo: "Coming Soon"
     }
   ];
