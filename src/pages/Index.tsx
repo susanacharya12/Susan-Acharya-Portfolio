@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Download, ExternalLink, Code, Database, Globe, Award, Star, Trophy, BookOpen, GraduationCap, CheckSquare } from "lucide-react";
-import ecommerceProject from "@/assets/ecommerce-project.jpg";
 import studentManagement from "@/assets/student-management.jpg";
 import egovernancePortal from "@/assets/egovernance-portal.jpg";
 import pythonProject from "@/assets/python-project.jpg";
-import todoListProject from "@/assets/todo-list-project.jpg";
+import enhancedTodoListProject from "@/assets/enhanced-todo-list-project.jpg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -630,12 +629,12 @@ export default function Index() {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with user authentication, payment integration, and admin dashboard",
-      technologies: ["Django", "DRF", "MySQL", "PostgreSQL"],
-      icon: <Globe className="h-6 w-6" />,
-      image: ecommerceProject,
-      github: "https://github.com/susanacharya12/django-ecommerce.git",
+      title: "Todo List",
+      description: "Built a simple yet powerful web app where users can register, log in, and manage their personal tasks with ease. Features user authentication (register/login/logout), add/complete/delete/search tasks, each user has their own private task list, and clean responsive UI for seamless experience.",
+      technologies: ["Python", "Django", "SQLite", "HTML", "CSS"],
+      icon: <CheckSquare className="h-6 w-6" />,
+      image: enhancedTodoListProject,
+      github: "https://github.com/susanacharya12/todo-list.git",
       demo: "Coming Soon"
     },
     {
@@ -663,15 +662,6 @@ export default function Index() {
       icon: <Code className="h-6 w-6" />,
       image: pythonProject,
       github: "https://github.com/susanacharya12/Python-Project.git",
-      demo: "Coming Soon"
-    },
-    {
-      title: "Todo List",
-      description: "A clean, responsive Todo List application built with HTML, CSS, and Django. Manage your daily tasks effortlessly with a modern UI featuring task creation, editing, and deletion.",
-      technologies: ["HTML", "CSS", "Django"],
-      icon: <CheckSquare className="h-6 w-6" />,
-      image: todoListProject,
-      github: "https://github.com/susanacharya12/todo-list.git",
       demo: "Coming Soon"
     }
   ];
